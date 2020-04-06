@@ -229,3 +229,14 @@ extend(config, ctx) {
     }
 }
 ```
+
+## add pug and stylus
+
+install loader packages to dev
+
+```bash
+npm install -D pug pug-plain-loader
+npm install -D stylus stylus-loader
+```
+
+and change template and style codes

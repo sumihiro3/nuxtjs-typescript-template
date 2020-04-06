@@ -1,29 +1,38 @@
-<template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-center">
-        <logo />
-        <vuetify-logo />
-      </div>
-      <v-card>
-        <v-card-title class="headline">
-          Users
-        </v-card-title>
-        <v-list-item v-for="user in users" :key="user.id" two-line>
-          <v-list-item-content>
-            <v-list-item-title>{{ user.name }}</v-list-item-title>
-            <v-list-item-subtitle>{{ user.email }}</v-list-item-subtitle>
-          </v-list-item-content>
-        </v-list-item>
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="primary" nuxt to="/inspire">
-            Continue
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-flex>
-  </v-layout>
+<template lang="pug">
+  v-layout(
+    column
+    justify-center
+    align-center
+  )
+    v-flex(
+      xs12
+      sm8
+      md6
+    )
+      div.text-center
+        logo
+        vuetify-logo
+      v-card
+        v-card-title.headline.bg_red
+          | Users
+        v-list-item(
+          v-for="user in users"
+          :key="user.id" 
+          two-line
+        )
+          v-list-item-content
+            v-list-item-title
+              | {{ user.name }}
+            v-list-item-subtitle
+              | {{ user.email }}
+        v-card-actions
+          v-spacer
+          v-btn(
+            color="primary"
+            nuxt
+            to="/inspire"
+          )
+            | Continue
 </template>
 
 <script lang="ts">
@@ -63,3 +72,8 @@ export default class Index extends Vue {
   }
 }
 </script>
+
+<style lang="stylus">
+.bg_red
+  background-color #FF0000
+</style>
