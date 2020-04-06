@@ -50,6 +50,13 @@ export default {
     '@nuxtjs/dotenv'
   ],
   /*
+   ** dotEnv module configuration
+   ** See https://github.com/nuxt-community/dotenv-module#options
+   */
+  dotenv: {
+    path: process.cwd()
+  },
+  /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
