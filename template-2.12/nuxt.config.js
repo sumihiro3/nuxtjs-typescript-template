@@ -75,6 +75,13 @@ export default {
    ** Build configuration
    */
   build: {
+    // build options for nuxt-property-decorator
+    babel: {
+      plugins: [
+        ["@babel/plugin-proposal-decorators", { legacy: true }],
+        ["@babel/plugin-proposal-class-properties", { loose: true }]
+      ]
+    },
     /*
      ** You can extend webpack config here
      */

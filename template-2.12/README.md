@@ -103,10 +103,10 @@ code .
 
 ### クラスベース
 
-install vue-property-decorator
+install nuxt-property-decorator
 
 ```bash
-npm install --save vue-property-decorator
+npm install --save nuxt-property-decorator
 ```
 
 add vue-shim.d.ts for \*.vue
@@ -142,7 +142,7 @@ New
 
 ```ts
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator'
 
 @Component({
   components: {
@@ -160,7 +160,7 @@ component/Logo.vue
 
 ```ts
 <script lang="ts">
-  import {(Component, Vue)} from 'vue-property-decorator'
+  import {(Component, Vue)} from 'nuxt-property-decorator'
 
   @Component export
   default class Logo extends Vue {}
@@ -171,7 +171,7 @@ component/VuetifyLogo.vue
 
 ```ts
 <script lang="ts">
-  import {(Component, Vue)} from 'vue-property-decorator'
+  import {(Component, Vue)} from 'nuxt-property-decorator'
   
   @Component export
   default class VuetifyLogo extends Vue {}
