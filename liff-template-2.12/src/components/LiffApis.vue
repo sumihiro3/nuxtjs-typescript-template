@@ -1,14 +1,14 @@
 <template lang="pug">
   v-container
-    v-flex(mb-4 xs12)
-      div.ma-4(xs6)
+    v-flex(mb-4 xl12 lg12 md12 sm12 xs12)
+      div.ma-4(xl4 lg4 md4 sm6 xs6)
         v-btn.custom-transform-class.text-none(
           rounded
           color="success"
           @click="openWindow"
         )
           | openWindow
-      div.ma-4(xs6)
+      div.ma-4(xl4 lg4 md4 sm6 xs6)
         v-btn.custom-transform-class.text-none(
           rounded
           :disabled="isInClient === false"
@@ -16,7 +16,7 @@
           @click="sendMessage"
         )
           | sendMessage
-      div.ma-4(xs6)
+      div.ma-4(xl4 lg4 md4 sm6 xs6)
         v-btn.custom-transform-class.text-none(
           rounded
           :disabled="isInClient === false"
