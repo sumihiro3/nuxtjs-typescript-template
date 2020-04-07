@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container
-    v-flex(mb-8 xs12 v-show="lineProfile")
+    v-flex(mb-8 xs12)
       p.subheading.font-weight-regular
         | Welcome! 
         | {{ lineProfile.displayName }}
@@ -20,6 +20,6 @@ import { Profile } from '@line/bot-sdk'
 
 @Component
 export default class LineProfile extends Vue {
-  @Prop() lineProfile!: Profile
+  @Prop({ type: Object, required: true }) readonly lineProfile!: Profile
 }
 </script>
