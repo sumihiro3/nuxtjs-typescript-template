@@ -1,7 +1,7 @@
 <template lang="pug">
   v-app
-    v-app-bar(fixed app)
-      v-toolbar-title(v-text="title")
+    v-app-bar(fixed app color="success")
+      v-toolbar-title.white--text.font-weight-black(v-text="title")
       v-spacer
     v-content
       v-container
