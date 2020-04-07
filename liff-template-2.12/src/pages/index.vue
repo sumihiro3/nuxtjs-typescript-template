@@ -4,6 +4,13 @@
     justify-center
     align-center
   )
+    //- SnackBar to show API result
+    v-snackbar(
+      v-model="showSnackBar"
+      :timeout="snackBarTimeout"
+      :color="snackBarColor"
+    )
+      | {{ snackBarText }}
     v-flex(
       xs12
       sm8
@@ -76,6 +83,10 @@ export default class Index extends Vue {
   isInClient: boolean = false
   os: string = ''
   componentKey: number = 0
+  snackBarText: string = ''
+  snackBarColor: string = 'primary'
+  snackBarTimeout: number = 3000
+  showSnackBar: boolean = false
   async asyncData(): Promise<void> {
     await console.log('LIFF_ID', process.env.LIFF_ID)
     await console.log('BASE_URL', process.env.BASE_URL)
@@ -103,12 +114,14 @@ export default class Index extends Vue {
     await liffLogin()
     this.profile = await getLineProfile()
     this.componentKey += 1
+    this.openSnackBar('Login success!!')
   }
 
   async doLogout() {
     await liffLogout()
     this.profile = null
     this.componentKey += 1
+    this.openSnackBar('Logout success!!')
   }
 
   loggedIn(): boolean {
@@ -125,15 +138,33 @@ export default class Index extends Vue {
 
   sendMessage() {
     sendMessage()
+    this.openSnackBar('Message sent!')
   }
 
   async scanCode() {
     const result = await scanCode()
     console.log('Scanned!', result)
+    if (result != null) {
+      this.openSnackBar(`Scanned text is "${result}"`)
+    }
   }
 
-  shareTargetPicker() {
-    shareTargetPicker()
+  async shareTargetPicker() {
+    const result: boolean = await shareTargetPicker()
+    if (result === true) {
+      this.openSnackBar('Message sent from ShareTargetPicker!')
+    } else {
+      this.openSnackBar('ShareTargetPicker launch failed...', true)
+    }
+  }
+
+  openSnackBar(text: string, warning: boolean = false) {
+    this.snackBarText = text
+    this.snackBarColor = 'primary'
+    if (warning === true) {
+      this.snackBarColor = 'warning'
+    }
+    this.showSnackBar = true
   }
 }
 </script>
