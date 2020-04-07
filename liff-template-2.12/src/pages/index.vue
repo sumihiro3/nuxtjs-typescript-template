@@ -58,11 +58,14 @@ export default class Index extends Vue {
     await console.log('BASE_URL', process.env.BASE_URL)
   }
 
-  async mounted() {
-    await this.initializeLiff()
-    if (this.loggedIn() === true) {
+  async created() {
+    if (this.liffInitialized === true && this.loggedIn() === true) {
       this.profile = await getLineProfile()
     }
+  }
+
+  async mounted() {
+    await this.initializeLiff()
   }
 
   async initializeLiff() {
