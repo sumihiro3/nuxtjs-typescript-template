@@ -1,5 +1,8 @@
 <template lang="pug">
   v-container(fluid)
+    h2.headline.text-left.font-italic.pt-2
+      | LIFF APIs
+    v-divider
     v-row(justify="center")
       v-col(cols="12" xl="12" sm="4")
       div.pa-2

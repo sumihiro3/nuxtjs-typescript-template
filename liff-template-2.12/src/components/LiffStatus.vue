@@ -1,23 +1,27 @@
 <template lang="pug">
-  v-simple-table(max-width="90%")
-    thead
-      tr
-        th.text-left
-          | Status
-        th.text-left
-          | Value
-    tbody
-      tr(
-        v-for="s in getLiffStatus()"
-        :key="s.label"
-      )
-        td.text-left(xs6)
-          | {{ s.label }}
-        td.text-left.text-truncate(
-          style="max-width: 200px;"
-          xs6
+  v-container(fluid)
+    h2.headline.text-left.font-italic.pt-2
+      | Status
+    v-divider
+    v-simple-table(max-width="90%")
+      thead
+        tr
+          th.text-left
+            | Status
+          th.text-left
+            | Value
+      tbody
+        tr(
+          v-for="s in getLiffStatus()"
+          :key="s.label"
         )
-          | {{ s.value }}
+          td.text-left(xs6)
+            | {{ s.label }}
+          td.text-left.text-truncate(
+            style="max-width: 200px;"
+            xs6
+          )
+            | {{ s.value }}
 
 </template>
 
