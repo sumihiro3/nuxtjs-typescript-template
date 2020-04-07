@@ -1,22 +1,23 @@
 <template lang="pug">
-  v-container
-    v-flex(mb-4 xl12 lg12 md12 sm12 xs12)
-      div.ma-4(xl4 lg4 md4 sm6 xs6)
+  v-container(fluid)
+    v-row(justify="center")
+      v-col(cols="12" xl="12" sm="4")
+      div.pa-2
         v-btn.custom-transform-class.text-none(
           rounded
-          color="success"
+          color="primary"
           @click="openWindow"
         )
           | openWindow
-      div.ma-4(xl4 lg4 md4 sm6 xs6)
+      div.pa-2
         v-btn.custom-transform-class.text-none(
           rounded
           :disabled="isInClient === false"
-          color="success"
+          color="info"
           @click="sendMessage"
         )
           | sendMessage
-      div.ma-4(xl4 lg4 md4 sm6 xs6)
+      div.pa-2
         v-btn.custom-transform-class.text-none(
           rounded
           :disabled="isInClient === false || os != 'android'"
