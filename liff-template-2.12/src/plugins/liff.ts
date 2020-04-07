@@ -1,6 +1,6 @@
 import { LiffContextData, LIFFErrorObject } from 'liff-type'
 import { Profile } from '@line/bot-sdk'
-import { LineUser, LiffError } from '@/types'
+import { LiffError } from '@/types'
 
 export function initLiff(pageLiffId: string): Promise<boolean> {
   return new Promise(resolve => {
@@ -8,8 +8,8 @@ export function initLiff(pageLiffId: string): Promise<boolean> {
       .init({ liffId: pageLiffId })
       .then(() => {
         console.log('LIFF initialized!')
-        const payload = window.liff.getDecodedIDToken()
-        console.log(payload)
+        // const payload = window.liff.getDecodedIDToken()
+        // console.log(payload)
         resolve(true)
       })
       .catch(err => {
@@ -19,14 +19,13 @@ export function initLiff(pageLiffId: string): Promise<boolean> {
   })
 }
 
-export function getLiffProfile(): Promise<LineUser> {
+export function getLineProfile(): Promise<Profile> {
   return new Promise(resolve => {
     window.liff
       .getProfile()
       .then((profile: Profile) => {
         console.log('liff.getProfile success!')
-        const user: LineUser = profile
-        resolve(user)
+        resolve(profile)
       })
       .catch((err: LIFFErrorObject) => {
         console.warn('liff.getProfile failed', err)
@@ -51,7 +50,7 @@ export function isInClient(): boolean {
   return window.liff.isInClient()
 }
 
-export function isLiffLoggedIn(): boolean {
+export function isLineLoggedIn(): boolean {
   return window.liff.isLoggedIn()
 }
 
@@ -65,4 +64,10 @@ export function getLiffAccessToken(): string {
 
 export function getLiffContext(): LiffContextData {
   return window.liff.getContext()
+}
+
+export function liffLogin(redirectUri?: string) {
+  return window.liff.login({
+    redirectUri
+  })
 }

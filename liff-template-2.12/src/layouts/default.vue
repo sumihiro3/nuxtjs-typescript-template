@@ -15,7 +15,7 @@
 export default {
   data() {
     return {
-      fixed: true,
+      fixed: false,
       title: 'LIFF v2 Sample'
     }
   }
