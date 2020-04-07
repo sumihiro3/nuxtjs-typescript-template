@@ -1,6 +1,6 @@
 declare global {
   interface Window {
-    Payjp: any
+    liff: any
   }
 }
 
