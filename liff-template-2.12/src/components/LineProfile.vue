@@ -12,6 +12,13 @@
           img(
             :src="profile.pictureUrl"
           )
+      div.mt-8
+        v-btn(
+          large
+          color="warning"
+          @click="doLogout"
+        )
+          | Logout
 </template>
 
 <script lang="ts">
@@ -21,5 +28,9 @@ import { Profile } from '@line/bot-sdk'
 @Component
 export default class LineProfile extends Vue {
   @Prop({ type: Object, required: true }) readonly profile!: Profile
+
+  doLogout() {
+    this.$emit('doLogout')
+  }
 }
 </script>

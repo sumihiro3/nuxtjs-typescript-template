@@ -20,6 +20,7 @@
           line-profile(
             v-if="profile != null"
             :profile="profile"
+            @doLogout="doLogout"
           )
           //- show LINE login button when user not logged in
           line-login(
@@ -29,6 +30,7 @@
           //- show LIFF status
           liff-status(
             v-if="liffInitialized"
+            :key="componentKey"
           )
 </template>
 
@@ -39,7 +41,8 @@ import {
   initLiff,
   isLineLoggedIn,
   getLineProfile,
-  liffLogin
+  liffLogin,
+  liffLogout
 } from '~/plugins/liff'
 
 @Component({
@@ -52,6 +55,7 @@ import {
 export default class Index extends Vue {
   profile: Profile | null = null
   liffInitialized: boolean = false
+  componentKey: number = 0
   async asyncData(): Promise<void> {
     await console.log('LIFF_ID', process.env.LIFF_ID)
     await console.log('BASE_URL', process.env.BASE_URL)
@@ -74,6 +78,13 @@ export default class Index extends Vue {
   async doLogin() {
     await liffLogin()
     this.profile = await getLineProfile()
+    this.componentKey += 1
+  }
+
+  async doLogout() {
+    await liffLogout()
+    this.profile = null
+    this.componentKey += 1
   }
 
   loggedIn(): boolean {

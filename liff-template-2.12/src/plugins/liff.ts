@@ -71,3 +71,7 @@ export function liffLogin(redirectUri?: string) {
     redirectUri
   })
 }
+
+export function liffLogout() {
+  return window.liff.logout()
+}
