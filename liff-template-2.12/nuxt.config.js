@@ -64,6 +64,11 @@ export default {
   dotenv: {
     path: process.cwd()
   },
+  env: {
+    API_BASE_URL: process.env.API_BASE_URL || 'http://127.0.0.1:3000',
+    BASE_URL: process.env.BASE_URL || 'http://127.0.0.1:3000',
+    LIFF_ID: process.env.LIFF_ID || 'DUMMY_LIFF_ID'
+  },
   /*
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
