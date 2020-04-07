@@ -118,7 +118,7 @@ export default class Index extends Vue {
   }
 
   openWindow() {
-    openWindow('https://line.me', this.isInClient)
+    openWindow('https://line.me')
   }
 
   sendMessage() {
