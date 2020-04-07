@@ -18,9 +18,8 @@
         client-only
           //- show user profile when user logged in
           line-profile(
-            v-if="liffInitialized === true && loggedIn() === true"
-            v-show="profile"
-            :lineProfile="profile"
+            v-if="profile != null"
+            :profile="profile"
           )
           //- show LINE login button when user not logged in
           line-login(
@@ -58,14 +57,13 @@ export default class Index extends Vue {
     await console.log('BASE_URL', process.env.BASE_URL)
   }
 
-  async created() {
+  async mounted() {
+    if (this.liffInitialized === false) {
+      await this.initializeLiff()
+    }
     if (this.liffInitialized === true && this.loggedIn() === true) {
       this.profile = await getLineProfile()
     }
-  }
-
-  async mounted() {
-    await this.initializeLiff()
   }
 
   async initializeLiff() {

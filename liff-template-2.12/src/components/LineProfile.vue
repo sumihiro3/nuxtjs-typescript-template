@@ -3,14 +3,14 @@
     v-flex(mb-8 xs12)
       p.subheading.font-weight-regular
         | Welcome! 
-        | {{ lineProfile.displayName }}
+        | {{ profile.displayName }}
       div
         v-avatar(
           color="teal"
           size="128"
         )
           img(
-            :src="lineProfile.pictureUrl"
+            :src="profile.pictureUrl"
           )
 </template>
 
@@ -20,6 +20,6 @@ import { Profile } from '@line/bot-sdk'
 
 @Component
 export default class LineProfile extends Vue {
-  @Prop({ type: Object, required: true }) readonly lineProfile!: Profile
+  @Prop({ type: Object, required: true }) readonly profile!: Profile
 }
 </script>
