@@ -12,8 +12,8 @@ export function initLiff(pageLiffId: string): Promise<boolean> {
         // console.log(payload)
         resolve(true)
       })
-      .catch(err => {
-        console.warn('LIFF initialization failed', err)
+      .catch((error: LIFFErrorObject) => {
+        console.warn('LIFF initialization failed', error)
         resolve(false)
       })
   })
@@ -27,9 +27,9 @@ export function getLineProfile(): Promise<Profile> {
         console.log('liff.getProfile success!')
         resolve(profile)
       })
-      .catch((err: LIFFErrorObject) => {
-        console.warn('liff.getProfile failed', err)
-        throw new LiffError(err.code, err.message)
+      .catch((error: LIFFErrorObject) => {
+        console.warn('liff.getProfile failed', error)
+        throw new LiffError(error.code, error.message)
       })
   })
 }
@@ -94,8 +94,8 @@ export function sendMessage() {
     .then(() => {
       console.log('message sent')
     })
-    .catch(err => {
-      console.log('error', err)
+    .catch((error: LIFFErrorObject) => {
+      console.log('error', error)
     })
 }
 
@@ -118,7 +118,7 @@ export function shareTargetPicker(): Promise<void> {
       .shareTargetPicker([
         {
           type: 'text',
-          text: 'Hello, World! for shareTargetPicker'
+          text: 'Hello, World! from shareTargetPicker'
         }
       ])
       .then(() => {
