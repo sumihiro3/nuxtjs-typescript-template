@@ -1,6 +1,6 @@
 <template lang="pug">
   v-container
-    v-flex(mb-8 xs12)
+    v-flex(mb-8 xs12 v-show="lineProfile")
       p.subheading.font-weight-regular
         | Welcome! 
         | {{ lineProfile.displayName }}
