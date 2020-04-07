@@ -111,3 +111,23 @@ export function scanCode(): Promise<string | null> {
     }
   })
 }
+
+export function shareTargetPicker(): Promise<void> {
+  return new Promise(resolve => {
+    window.liff
+      .shareTargetPicker([
+        {
+          type: 'text',
+          text: 'Hello, World! for shareTargetPicker'
+        }
+      ])
+      .then(() => {
+        console.log('ShareTargetPicker was launched')
+        resolve()
+      })
+      .catch((error: LIFFErrorObject) => {
+        console.warn('Failed to launch ShareTargetPicker', error)
+        resolve()
+      })
+  })
+}

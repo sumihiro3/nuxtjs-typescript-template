@@ -36,6 +36,7 @@
             @openWindow="openWindow"
             @sendMessage="sendMessage"
             @scanCode="scanCode"
+            @shareTargetPicker="shareTargetPicker"
           )
           //- show LIFF status
           liff-status(
@@ -57,7 +58,8 @@ import {
   liffLogout,
   openWindow,
   sendMessage,
-  scanCode
+  scanCode,
+  shareTargetPicker
 } from '~/plugins/liff'
 
 @Component({
@@ -128,6 +130,10 @@ export default class Index extends Vue {
   async scanCode() {
     const result = await scanCode()
     console.log('Scanned!', result)
+  }
+
+  shareTargetPicker() {
+    shareTargetPicker()
   }
 }
 </script>

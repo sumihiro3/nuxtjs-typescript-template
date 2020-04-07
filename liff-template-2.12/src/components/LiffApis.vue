@@ -25,6 +25,13 @@
           @click="scanCode"
         )
           | scanCode
+      div.pa-2
+        v-btn.custom-transform-class.text-none(
+          rounded
+          color="primary"
+          @click="shareTargetPicker"
+        )
+          | shareTargetPicker
 </template>
 
 <script lang="ts">
@@ -45,6 +52,10 @@ export default class LiffApis extends Vue {
 
   scanCode() {
     this.$emit('scanCode')
+  }
+
+  shareTargetPicker() {
+    this.$emit('shareTargetPicker')
   }
 }
 </script>
