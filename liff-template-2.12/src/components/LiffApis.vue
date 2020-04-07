@@ -19,7 +19,7 @@
       div.ma-4(xl4 lg4 md4 sm6 xs6)
         v-btn.custom-transform-class.text-none(
           rounded
-          :disabled="isInClient === false && os != 'android'"
+          :disabled="isInClient === false || os != 'android'"
           color="success"
           @click="scanCode"
         )
