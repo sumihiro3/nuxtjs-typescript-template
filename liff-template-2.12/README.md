@@ -1,6 +1,6 @@
-# template-2.12
+# liff-template-2.12
 
-> Nuxt.js project template for v2.12.x with TypeScript
+> Nuxt.js project template for LINE LIFF app with Nuxt.js v2.12.x and TypeScript
 
 ## Build Setup
 
@@ -26,21 +26,21 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
 ### Env
 
-- Nuxt.js 2.12.1
+- Nuxt.js 2.12.2
 - Node.js v12.16.1
 - TypeScript 3.8.3
 
 ### Create project
 
 ```bash
-npx create-nuxt-app template-2.12
+npx create-nuxt-app liff-template-2.12
 ```
 
 Choose options
 
 ```bash
-✨  Generating Nuxt.js project in template-2.12
-? Project name template-2.12
+✨  Generating Nuxt.js project in liff-template-2.12
+? Project name liff-template-2.12
 ? Project description Nuxt.js project template for v2.12.x with TypeScript
 ? Author name sumihiro3
 ? Choose programming language TypeScript
@@ -58,16 +58,16 @@ Choose options
 install done
 
 ```bash
-🎉  Successfully created project template-2.12
+🎉  Successfully created project liff-template-2.12
 
   To get started:
 
-        cd template-2.12
+        cd liff-template-2.12
         npm run dev
 
   To build & start for production:
 
-        cd template-2.12
+        cd liff-template-2.12
         npm run build
         npm run start
 
@@ -80,7 +80,7 @@ install done
 run first
 
 ```bash
-cd template-2.12/
+cd liff-template-2.12/
 npm run dev
 ```
 
@@ -243,6 +243,8 @@ and change template and style codes
 
 ## for LINE LIFF
 
+install LIFF types
+
 ```bash
 npm install --save @line/bot-sdk
 npm install -D liff-type
@@ -250,7 +252,7 @@ npm install -D liff-type
 
 Add liff-types in compilerOptions.types at tsconfig.json
 
-``json
+```json
 "types": [
       "@types/node",
       "@nuxt/types",
@@ -258,3 +260,19 @@ Add liff-types in compilerOptions.types at tsconfig.json
       "liff-type"
     ]
 ```
+
+add liff object in Window object
+
+see [types/types.ts](src/types/types.ts)
+
+```ts
+declare global {
+  interface Window {
+    liff: any
+  }
+}
+```
+
+implement plugin for liff APIs.
+
+see [plugins/liff.ts](src/plugins/liff.ts)
