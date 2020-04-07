@@ -18,10 +18,6 @@ import { Component, Vue } from 'nuxt-property-decorator'
 @Component
 export default class LineLogin extends Vue {
   doLogin() {
-    // const redirectUrl = `${process.env.BASE_URL}?hogehoge=fugafuga`
-    // console.info('LINE Login redirectUrl:', redirectUrl)
-    // liffLogin(redirectUrl)
-    // liffLogin()
     this.$emit('doLogin')
   }
 }

@@ -1,4 +1,4 @@
-import { LiffContextData, LIFFErrorObject } from 'liff-type'
+import { LiffContextData, LIFFErrorObject, scanCodeResult } from 'liff-type'
 import { Profile } from '@line/bot-sdk'
 import { LiffError } from '@/types'
 
@@ -74,4 +74,40 @@ export function liffLogin(redirectUri?: string) {
 
 export function liffLogout() {
   return window.liff.logout()
+}
+
+export function openWindow(url: string, external?: boolean) {
+  return window.liff.openWindow({
+    url,
+    external
+  })
+}
+
+export function sendMessage() {
+  window.liff
+    .sendMessages([
+      {
+        type: 'text',
+        text: 'Hello, World!'
+      }
+    ])
+    .then(() => {
+      console.log('message sent')
+    })
+    .catch(err => {
+      console.log('error', err)
+    })
+}
+
+export function scanCode(): Promise<string | null> {
+  return new Promise(resolve => {
+    if (window.liff.scanCode) {
+      window.liff.scanCode().then((value: scanCodeResult) => {
+        console.log('Scanned text', value)
+        resolve(value.value)
+      })
+    } else {
+      resolve(null)
+    }
+  })
 }

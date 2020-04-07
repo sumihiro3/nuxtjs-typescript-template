@@ -20,12 +20,22 @@
           line-profile(
             v-if="profile != null"
             :profile="profile"
+            :isInClient="isInClient"
             @doLogout="doLogout"
           )
           //- show LINE login button when user not logged in
           line-login(
             v-else
             @doLogin="doLogin"
+          )
+          //- show buttons for execute LIFF APIs
+          liff-apis(
+            v-if="profile != null"
+            :isInClient="isInClient"
+            :os="os"
+            @openWindow="openWindow"
+            @sendMessage="sendMessage"
+            @scanCode="scanCode"
           )
           //- show LIFF status
           liff-status(
@@ -40,21 +50,29 @@ import { Profile } from '@line/bot-sdk'
 import {
   initLiff,
   isLineLoggedIn,
+  isInClient,
+  getOS,
   getLineProfile,
   liffLogin,
-  liffLogout
+  liffLogout,
+  openWindow,
+  sendMessage,
+  scanCode
 } from '~/plugins/liff'
 
 @Component({
   components: {
     LiffStatus: () => import('@/components/LiffStatus.vue'),
     LineProfile: () => import('@/components/LineProfile.vue'),
-    LineLogin: () => import('@/components/LineLogin.vue')
+    LineLogin: () => import('@/components/LineLogin.vue'),
+    LiffApis: () => import('@/components/LiffApis.vue')
   }
 })
 export default class Index extends Vue {
   profile: Profile | null = null
   liffInitialized: boolean = false
+  isInClient: boolean = false
+  os: string = ''
   componentKey: number = 0
   async asyncData(): Promise<void> {
     await console.log('LIFF_ID', process.env.LIFF_ID)
@@ -65,6 +83,8 @@ export default class Index extends Vue {
     if (this.liffInitialized === false) {
       await this.initializeLiff()
     }
+    this.isInClient = isInClient()
+    this.os = getOS()
     if (this.liffInitialized === true && this.loggedIn() === true) {
       this.profile = await getLineProfile()
     }
@@ -76,6 +96,8 @@ export default class Index extends Vue {
   }
 
   async doLogin() {
+    // const redirectUrl = `${process.env.BASE_URL}?hogehoge=fugafuga`
+    // console.info('LINE Login redirectUrl:', redirectUrl)
     await liffLogin()
     this.profile = await getLineProfile()
     this.componentKey += 1
@@ -93,6 +115,19 @@ export default class Index extends Vue {
 
   async getProfile(): Promise<Profile> {
     return await getLineProfile()
+  }
+
+  openWindow() {
+    openWindow('https://line.me', this.isInClient)
+  }
+
+  sendMessage() {
+    sendMessage()
+  }
+
+  async scanCode() {
+    const result = await scanCode()
+    console.log('Scanned!', result)
   }
 }
 </script>

@@ -14,6 +14,7 @@
           )
       div.mt-8
         v-btn(
+          v-show="isInClient === false"
           large
           color="warning"
           @click="doLogout"
@@ -28,6 +29,7 @@ import { Profile } from '@line/bot-sdk'
 @Component
 export default class LineProfile extends Vue {
   @Prop({ type: Object, required: true }) readonly profile!: Profile
+  @Prop() readonly isInClient: boolean = false
 
   doLogout() {
     this.$emit('doLogout')
