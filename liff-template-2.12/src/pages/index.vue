@@ -152,7 +152,7 @@ export default class Index extends Vue {
   async shareTargetPicker() {
     const result: boolean = await shareTargetPicker()
     if (result === true) {
-      this.openSnackBar('Message sent from ShareTargetPicker!')
+      this.openSnackBar('ShareTargetPicker launched!')
     } else {
       this.openSnackBar('ShareTargetPicker launch failed...', true)
     }
