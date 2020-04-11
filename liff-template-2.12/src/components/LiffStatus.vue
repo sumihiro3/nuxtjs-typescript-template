@@ -32,6 +32,7 @@ import {
   getOS,
   getLiffLanguage,
   isInClient,
+  getLiffVersion,
   getLiffAccessToken
 } from '~/plugins/liff'
 
@@ -41,9 +42,10 @@ export default class LiffStatus extends Vue {
     return [
       { label: 'OS', value: getOS() },
       { label: 'Language', value: getLiffLanguage() },
-      { label: 'In App browser', value: isInClient() },
-      { label: 'LoggedIn', value: isLineLoggedIn() },
-      { label: 'Access token', value: getLiffAccessToken() }
+      { label: 'In App Browser', value: isInClient() },
+      { label: 'Logged In', value: isLineLoggedIn() },
+      { label: 'LIFF Version', value: getLiffVersion() },
+      { label: 'Access Token', value: getLiffAccessToken() }
     ]
   }
 }
